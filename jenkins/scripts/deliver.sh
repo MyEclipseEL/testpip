@@ -1,7 +1,7 @@
 #!/bin/bash
 APP_NAME=testpip-0.0.1.jar
-#APP_DIR=/var/jenkins_home/workspace/demo/target/
-APP_DIR=/var/jenkins-piptest/workspace/demo/target/
+APP_DIR=/var/jenkins_home/workspace/demo/target/
+#APP_DIR=/var/jenkins-piptest/workspace/demo/target/
 usage(){
     echo "Usage sh执行脚本.sh [start|stop|restart|status]"
     exit 1
@@ -24,7 +24,7 @@ start(){
     echo "pid=${pid}"
     echo "${APP_NAME} is already runing. pid=${pid}"
     else
-        nohup java -jar $APP_DIR$APP_NAME >/dev/null 2>&1 &
+        nohup java -jar $APP_DIR$APP_NAME
     fi
 }
 # 停止方法
