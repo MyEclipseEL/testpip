@@ -23,7 +23,7 @@ pipeline {
         }
 	stage('Deliver') {
 	    steps {
-		java -jar /var/jenkins_home/workspace/demo/target/testpip-0.0.1-SNAPSHOT
+		sh 'java -jar /var/jenkins_home/workspace/demo/target/testpip-0.0.1-SNAPSHOT'
 	    }
         }
     }
