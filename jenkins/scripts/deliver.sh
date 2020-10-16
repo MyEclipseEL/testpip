@@ -25,7 +25,7 @@ start(){
     echo "${APP_NAME} is already runing. pid=${pid}"
     else
 	cd target
-        nohup java -jar $APP_NAME
+        nohup java -jar $APP_NAME > ./run.log
     fi
 }
 # 停止方法
