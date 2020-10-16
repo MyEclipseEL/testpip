@@ -1,5 +1,5 @@
 #!/bin/bash
-APP_NAME=testpip-0.0.1.jar
+APP_NAME=testpip-0.0.1-SNAPSHOT.jar
 #APP_DIR=/var/jenkins_home/workspace/demo/target/
 APP_DIR=/var/jenkins-piptest/workspace/demo/target/
 usage(){
