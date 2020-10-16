@@ -1,5 +1,6 @@
 #!/bin/bash
 APP_NAME=testpip-0.0.1.jar
+APP_DIR=target/
 usage(){
     echo "Usage sh执行脚本.sh [start|stop|restart|status]"
     exit 1
@@ -22,7 +23,7 @@ start(){
     echo "pid=${pid}"
     echo "${APP_NAME} is already runing. pid=${pid}"
     else
-        nohup java -jar $APP_NAME > /dev/null &
+        nohup java -jar $APP_DIR$APP_NAME > /dev/null &
     fi
 }
 # 停止方法
