@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 APP_NAME=testpip-0.0.1-SNAPSHOT.jar
 ##用来提示输入参数
 usage(){
