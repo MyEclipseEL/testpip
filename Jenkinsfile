@@ -21,11 +21,11 @@ pipeline {
                 }
             }
         }
-	stage('Deliver') {
-	    steps {
-		sh './jenkins/scripts/deliver.sh start'
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh start'
 
-	    }
+            }
         }
     }
 }
