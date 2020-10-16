@@ -1,74 +1,26 @@
-#!/bin/bash
-APP_NAME=testpip-0.0.1-SNAPSHOT.jar
-#APP_DIR=/var/jenkins_home/workspace/demo/target/
-#APP_DIR=/var/jenkins-piptest/workspace/demo/target/
-usage(){
-    echo "Usage sh执行脚本.sh [start|stop|restart|status]"
-    exit 1
-}
+#!/usr/bin/env bash
 
-# 检查程序是否正在运行
-is_exist(){
-    pid=`ps -ef | grep $APP_NAME | grep -v grep | awk '{print $2}' `
-    # 如果存在返回0 不存在返回1
-    if [ -z "${pid}" ]; then
-        return 1
-    else
-        return 0
-    fi
-}
-# 启动方法
-start(){
-    is_exist
-    if [ $? -eq "0" ]; then
-    echo "pid=${pid}"
-    echo "${APP_NAME} is already runing. pid=${pid}"
-    else
-	cd target
-        nohup java -jar $APP_NAME > ./run.log
-    fi
-}
-# 停止方法
-stop(){
-    is_exist
-    if [ $? -eq "0" ]; then
-        echo "pid=${pid}"
-        kill -9 $pid
-    else
-        echo "${APP_NAME} is not runing"
-    fi
-}
-# 输出运行状态
-status(){
-    is_exist
-    if [ $? -eq "0" ]; then
-        echo "${APP_NAME} is runing. pid is ${pid}"
-    else
-        echo "${APP_NAME} is not runing"
-    fi
-}
+echo 'The following Maven command installs your Maven-built Java application'
+echo 'into the local Maven repository, which will ultimately be stored in'
+echo 'Jenkins''s local Maven repository (and the "maven-repository" Docker data'
+echo 'volume).'
+set -x
+mvn jar:jar install:install help:evaluate -Dexpression=project.name
+set +x
 
-# 重启
-restart(){
-    stop
-    start
-}
+echo 'The following complex command extracts the value of the <name/> element'
+echo 'within <project/> of your Java/Maven project''s "pom.xml" file.'
+set -x
+NAME=`mvn help:evaluate -Dexpression=project.name | grep "^[^\[]"`
+set +x
 
-# 根据输入命令执行相应方法
-case "$1" in
-    "start")
-    start
-    ;;
-    "stop")
-    stop
-    ;;
-    "restart")
-    restart
-    ;;
-    "status")
-    status
-    ;;
-    *)
-    usage
-    ;;
-esac
+echo 'The following complex command behaves similarly to the previous one but'
+echo 'extracts the value of the <version/> element within <project/> instead.'
+set -x
+VERSION=`mvn help:evaluate -Dexpression=project.version | grep "^[^\[]"`
+set +x
+
+echo 'The following command runs and outputs the execution of your Java'
+echo 'application (which Jenkins built using Maven) to the Jenkins UI.'
+set -x
+java -jar target/${NAME}-${VERSION}.jar
