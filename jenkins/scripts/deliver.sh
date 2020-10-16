@@ -1,6 +1,6 @@
 #!/bin/bash
 APP_NAME=testpip-0.0.1.jar
-APP_DIR=target/
+APP_DIR=/var/jenkins_home/workspace/demo/target/
 usage(){
     echo "Usage sh执行脚本.sh [start|stop|restart|status]"
     exit 1
