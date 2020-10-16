@@ -23,7 +23,7 @@ pipeline {
         }
 	stage('Deliver') {
 	    steps {
-		sh 'nohup java -jar target/testpip-0.0.1-SNAPSHOT'
+		sh './jenkins/scripts/deliver.sh start'
 
 	    }
         }
